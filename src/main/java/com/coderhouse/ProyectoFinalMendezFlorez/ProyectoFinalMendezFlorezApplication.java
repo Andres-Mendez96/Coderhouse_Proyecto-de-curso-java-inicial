@@ -8,6 +8,7 @@ public class ProyectoFinalMendezFlorezApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProyectoFinalMendezFlorezApplication.class, args);
+		System.out.println("¡Aplicacion Levantada!");
 	}
 
 }
