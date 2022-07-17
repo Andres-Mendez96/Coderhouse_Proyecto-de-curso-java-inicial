@@ -15,16 +15,33 @@ public class ClienteServicesImpl implements ClienteServices{
 
     @Override
     public Clientes crearCliente(Clientes cliente) throws Exception {
-        return null;
+
+        if (buscarPorIdCliente(cliente.getId_cliente())==null){
+            return clienteRepository.save(cliente);
+        } else  {
+            throw new Exception("Este cliente ya existe");
+        }
+
     }
 
     @Override
-    public Clientes actualizarCliente(Clientes cliente) {
-        return null;
+    public Clientes actualizarCliente(Clientes cliente) throws Exception {
+        if (buscarPorIdCliente(cliente.getId_cliente())!= null){
+            return clienteRepository.save(cliente);
+        }
+        else {
+            throw new Exception("Este cliente no existe");
+        }
     }
+
 
     @Override
     public List<Clientes> buscarTodosLosClientes() {
         return clienteRepository.findAll();
+    }
+
+    @Override
+    public Clientes buscarPorIdCliente(Integer id_cliente) {
+        return clienteRepository.findById(id_cliente).orElse(null);
     }
 }

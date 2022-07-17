@@ -8,7 +8,9 @@ public interface ClienteServices {
 
     Clientes crearCliente(Clientes cliente) throws Exception;
 
-    Clientes actualizarCliente(Clientes cliente);
+    Clientes actualizarCliente(Clientes cliente) throws Exception;
 
     List <Clientes> buscarTodosLosClientes ();
+
+    Clientes buscarPorIdCliente (Integer id_cliente);
 }
