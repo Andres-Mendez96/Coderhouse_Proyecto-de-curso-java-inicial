@@ -28,6 +28,6 @@ public class ClienteController {
 
     @PostMapping("/actualizar")
     public Clientes actualizarCliente (@RequestBody Clientes cliente) throws Exception{
-        return clienteServices.crearCliente(cliente);
+        return clienteServices.actualizarCliente(cliente);
     }
 }
