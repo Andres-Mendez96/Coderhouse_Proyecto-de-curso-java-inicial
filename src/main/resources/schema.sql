@@ -27,7 +27,7 @@ create table VENTA_COMPROBANTE (
 ID_COMPROBANTE int not null,
 ID_CLIENTE int not null,
 NOMBRE_COMPLETO varchar (100) not null,
-FECHA varchar (10) not null,
+FECHA date not null,
 TOTAL float not null,
 primary key (ID_COMPROBANTE)
 

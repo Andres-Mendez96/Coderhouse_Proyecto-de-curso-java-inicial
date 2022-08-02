@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -30,7 +31,7 @@ public class Venta_Comprobante {
 
 
     @Column(name = "FECHA")
-    private String fecha;
+    private Date fecha;
 
     @Column(name = "TOTAL")
     private Float total;
