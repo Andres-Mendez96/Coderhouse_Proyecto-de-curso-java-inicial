@@ -8,6 +8,7 @@ import com.coderhouse.ProyectoFinalMendezFlorez.Repositories.ClienteRepository;
 import com.coderhouse.ProyectoFinalMendezFlorez.Repositories.LineaDeVentaRepository;
 import com.coderhouse.ProyectoFinalMendezFlorez.Repositories.ProductoRepository;
 import com.coderhouse.ProyectoFinalMendezFlorez.RequestAndResponse.LineaVentaRequest;
+import com.coderhouse.ProyectoFinalMendezFlorez.RequestAndResponse.LineaVentaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class LineaDeVentaServicesImpl implements LineaDeVentaServices {
     }
 
     @Override
-    public Linea_De_Venta vender(LineaVentaRequest venta) throws Exception {
+    public LineaVentaResponse vender(LineaVentaRequest venta) throws Exception {
 
         /*Busco el producto comprado por el cliente y lo almaceno en una variable. Luego se evalua:
         * si el id del cliente es nulo o erroneo, se emite un mensaje de error
@@ -66,7 +67,17 @@ public class LineaDeVentaServicesImpl implements LineaDeVentaServices {
             // Se verifica que no se vaya a guardar la venta en una misma linea, sino que sea una diferente
         if (buscarVentaPorId(ventaEntrante.getId_venta()) == null) {
             lineaDeVentaRepository.save(ventaEntrante);
-            return ventaEntrante;
+
+            //Creo un objeto del tipo de mi Response para devolver la información que quiero comunicarle al cliente
+            LineaVentaResponse ventaSaliente = new LineaVentaResponse();
+            ventaSaliente.setIdVenta(ventaEntrante.getId_venta());
+            ventaSaliente.setCodigoProducto(ventaEntrante.getCodigo());
+            ventaSaliente.setDescripcionProducto(ventaEntrante.getDescripcion());
+            ventaSaliente.setPrecioProducto(ventaEntrante.getPrecio());
+            ventaSaliente.setCantidadComprada(ventaEntrante.getCantidad());
+            ventaSaliente.setIdComprobante(ventaEntrante.getId_comprobante());
+
+            return ventaSaliente;
         } else throw new CustomException("Esta venta ya había sido registrada");
 
 

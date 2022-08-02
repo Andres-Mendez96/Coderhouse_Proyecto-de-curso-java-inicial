@@ -38,7 +38,7 @@ public class LineaDeVentaController {
     }
 
     @PostMapping("/vender")
-    public Linea_De_Venta vender (@RequestBody LineaVentaRequest request) throws Exception {
+    public LineaVentaResponse vender (@RequestBody LineaVentaRequest request) throws Exception {
         return lineaDeVentaServices.vender(request);
     }
 }

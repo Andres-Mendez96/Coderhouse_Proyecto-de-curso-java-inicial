@@ -12,6 +12,6 @@ public interface LineaDeVentaServices {
 
     Linea_De_Venta buscarVentaPorId (Integer id_venta);
 
-    Linea_De_Venta vender (LineaVentaRequest venta) throws Exception; // Este metodo guardará una venta en la tabla correspondiente
+    LineaVentaResponse vender (LineaVentaRequest venta) throws Exception; // Este metodo guardará una venta en la tabla correspondiente
                                           // y devuelve un aviso al usuario de que ha comprado
 }
