@@ -5,9 +5,18 @@ values
 ('Elizabeth', 'Mendoza', 10010030, 3344),
 ('Erika', 'Montenegro', 10010040, 4455);
 
-insert into PRODUCTOS (NOMBRE_PRODUCTO, CODIGO, DESCRIPCION, PRECIO, STOCK_DISPONIBLE)
+insert into PRODUCTOS (CODIGO, DESCRIPCION, PRECIO, STOCK_DISPONIBLE)
 values
-('Hamburguesa estandar', 20020010, 'Hamburguesa sencilla de una sola carne con tomate y lechuga', 400, 10),
-('Hamburguesa doble carne', 20020020, 'Hamburguesa con dos carnes a eleccion mas tomate y queso', 500, 10),
-('Pizza hawaiana pequeña', 20020030, 'Pizza de 4 porciones con jamon y pinia', 450, 10 ),
-('Empanada de carne', 20020040, 'Empanada rellena de carne de res o de cerdo', 230, 10);
+(20020010, 'Atún en lomitos x 200gr', 400, 100),
+(20020020, 'Arvejas remojadas x 350gr', 50, 100),
+(20020030, 'Granos de choclo amarillo x 800gr', 440, 100 ),
+(20020040, 'Frijoles Bayos Refritos x 400gr', 850, 100),
+(20020050, 'Pepino agridulce x 600gr', 770, 100);
+
+insert into LINEA_DE_VENTA (ID_VENTA, CODIGO, DESCRIPCION, PRECIO, CANTIDAD, ID_COMPROBANTE)
+values
+(1, 20020010, 'Atun en lomitos x 200gr', 400, 5, 1234);
+
+insert into VENTA_COMPROBANTE (ID_COMPROBANTE, ID_CLIENTE, NOMBRE_COMPLETO, FECHA, TOTAL)
+values
+(1234, 1122, 'Juan Perez', '30/07/2022', 2000);
