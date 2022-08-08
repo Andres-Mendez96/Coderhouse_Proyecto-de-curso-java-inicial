@@ -1,6 +1,6 @@
 package com.coderhouse.ProyectoFinalMendezFlorez.RequestAndResponse;
 
-import lombok.Builder;
+
 import lombok.Data;
 @Data
 public class LineaVentaResponse {

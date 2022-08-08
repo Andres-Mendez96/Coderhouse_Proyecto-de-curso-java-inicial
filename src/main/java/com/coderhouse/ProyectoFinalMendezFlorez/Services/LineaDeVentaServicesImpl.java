@@ -22,6 +22,8 @@ public class LineaDeVentaServicesImpl implements LineaDeVentaServices {
 
     @Autowired
     ProductoRepository productoRepository;
+    @Autowired
+    ProductoServices productoServices;
 
     @Autowired
     ClienteRepository clienteRepository;
@@ -63,8 +65,18 @@ public class LineaDeVentaServicesImpl implements LineaDeVentaServices {
                     .id_comprobante(venta.getNumeroComprobante())
                     .build();
 
+        //Se comprueba que la cantidad solicitada sea menor al stock disponible y se reduce el stock en consecuencia
+        if(prod.getStock_disponible() >= venta.getCantidadComprada()){
+            int nuevoStock = prod.getStock_disponible() - venta.getCantidadComprada();
+            prod.setStock_disponible(nuevoStock);
+            productoServices.actualizarProducto(prod);
+        } else if (prod.getStock_disponible() < venta.getCantidadComprada()) {
+            throw new CustomException("Lo sentimos, pero no hay suficiente stock del producto solicitado para " +
+                    "satisfacer la cantidad solicitada.");
+        }
 
-            // Se verifica que no se vaya a guardar la venta en una misma linea, sino que sea una diferente
+
+        // Se verifica que no se vaya a guardar la venta en una misma linea, sino que sea una diferente
         if (buscarVentaPorId(ventaEntrante.getId_venta()) == null) {
             lineaDeVentaRepository.save(ventaEntrante);
 
@@ -83,7 +95,7 @@ public class LineaDeVentaServicesImpl implements LineaDeVentaServices {
 
     }
 
-    //--------------------------- METODOS --------------------------------------
+    //--------------------------- METODOS AUXILIARES --------------------------------------
     private int generarId (){
         return lineaDeVentaRepository.findAll().size()+1;
     }
@@ -94,5 +106,7 @@ public class LineaDeVentaServicesImpl implements LineaDeVentaServices {
             return false;
         } else return true;
     }
+
+
 }
 
