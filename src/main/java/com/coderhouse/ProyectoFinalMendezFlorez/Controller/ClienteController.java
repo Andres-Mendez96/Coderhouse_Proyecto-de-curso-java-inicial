@@ -16,7 +16,7 @@ public class ClienteController {
     ClienteServices clienteServices;
 
     //Defino los métodos que voy a usar con Get y Post
-    @GetMapping("")
+    @GetMapping("/all")
     public List<Clientes> buscarTodosLosCLientes (){
         return clienteServices.buscarTodosLosClientes();
     }

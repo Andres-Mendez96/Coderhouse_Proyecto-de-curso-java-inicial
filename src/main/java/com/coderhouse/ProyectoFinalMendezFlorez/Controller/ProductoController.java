@@ -17,7 +17,7 @@ public class ProductoController {
     private ProductoServices productoServices;
 
     //Defino los metodos get y post
-    @GetMapping("")
+    @GetMapping("/all")
     public List<Productos> buscarTodosLosProductos(){
         return productoServices.buscarTodosLosProductos();
     }
